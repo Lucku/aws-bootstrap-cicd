@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    TF_IN_AUTOMATION: "1"
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - tf_version=$TERRAFORM_VERSION
+      - wget -nc https://releases.hashicorp.com/terraform/"$TERRAFORM_VERSION"/terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
+      - unzip -o terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+  build:
+    commands:
+      - terraform --version
+      - |
+        terraform init -input=false -backend-config="bucket=$STATE_BUCKET_NAME" \
+        -backend-config="key=$APPLICATION_ID/terraform.tfstate" \
+        -backend-config="region=eu-central-1" \
+        -backend-config="dynamodb_table=$STATE_LOCKING_TABLE_NAME" infrastructure/
+      - terraform validate infrastructure/
+      - terraform plan -lock=false -input=false -out=tfplan.out infrastructure/
+
+artifacts:
+  files:
+    - bin/**/*
+    - infrastructure/**/*
+    - tfplan.out

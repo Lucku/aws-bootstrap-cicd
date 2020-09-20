@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.14
+    commands:
+      - go version
+      - go env
+      - go get golang.org/x/lint/golint
+      - go get github.com/jstemmer/go-junit-report
+      - go get -t ./...
+  pre_build:
+    commands:
+      - golint -set_exit_status ./...
+      - go vet ./...
+      - go test -v -race ./... | tee go-test.out
+      - go-junit-report <go-test.out > go-test-report.xml
+  build:
+    commands:
+      - go build -o bin/main main.go
+
+reports:
+  GoTestReports:
+    files:
+      - go-test-report.xml
+    file-format: JunitXml
+
+artifacts:
+  files:
+    - bin/**/*
+    - infrastructure/**/*
