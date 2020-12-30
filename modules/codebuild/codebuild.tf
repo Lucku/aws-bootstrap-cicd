@@ -21,7 +21,7 @@ resource "aws_codebuild_project" "codebuild_project_build" {
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.13.3"
+      value = "0.14.3"
     }
   }
 
@@ -78,7 +78,7 @@ resource "aws_codebuild_project" "codebuild_project_terraform_plan" {
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.13.3"
+      value = "0.14.3"
     }
 
     environment_variable {
@@ -150,7 +150,7 @@ resource "aws_codebuild_project" "codebuild_project_terraform_apply" {
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.13.3"
+      value = "0.14.3"
     }
 
     environment_variable {

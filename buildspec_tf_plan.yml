@@ -6,8 +6,6 @@ env:
 
 phases:
   install:
-    runtime-versions:
-      python: 3.8
     commands:
       - tf_version=$TERRAFORM_VERSION
       - wget -nc https://releases.hashicorp.com/terraform/"$TERRAFORM_VERSION"/terraform_"$TERRAFORM_VERSION"_linux_amd64.zip

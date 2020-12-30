@@ -259,6 +259,10 @@ resource "aws_codepipeline" "tf_codepipeline" {
       provider  = "Manual"
       version   = "1"
       run_order = 2
+
+      configuration = {
+        ExternalEntityLink = "https://s3.console.aws.amazon.com/s3/buckets/${aws_s3_bucket.tf_codepipeline_artifact_bucket.bucket}"
+      }
     }
 
     action {

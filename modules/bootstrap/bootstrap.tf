@@ -23,6 +23,7 @@ resource "aws_s3_bucket" "state_bucket" {
     Project       = var.project_name
     Region        = "ec1"
     Environment   = var.environment
+    CreatedDate   = timestamp()
   }
 }
 
@@ -53,6 +54,7 @@ resource "aws_dynamodb_table" "tf_lock_state" {
     Project       = var.project_name
     Region        = "ec1"
     Environment   = var.environment
+    CreatedDate   = timestamp()
   }
 }
 
@@ -80,6 +82,7 @@ resource "aws_s3_bucket" "s3_logging_bucket" {
     Project       = var.project_name
     Region        = "ec1"
     Environment   = var.environment
+    CreatedDate   = timestamp()
   }
 }
 
@@ -117,6 +120,7 @@ EOF
     Project       = var.project_name
     Region        = "ec1"
     Environment   = var.environment
+    CreatedDate   = timestamp()
   }
 }
 
@@ -238,6 +242,7 @@ EOF
     Project       = var.project_name
     Region        = "ec1"
     Environment   = var.environment
+    CreatedDate   = timestamp()
   }
 }
 

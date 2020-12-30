@@ -1,12 +1,12 @@
 # Bootstrap CI/CD Resources
 
-Terraform files for bootstrapping a complete development environment in AWS, consisting a source code repository, build step, resource deployment via Terraform and a CI/CD pipeline that glues everything together. The pipeline looks as follows:
+Terraform files for bootstrapping a complete development environment in AWS, including a source code repository, build step, resource deployment via Terraform and a CI/CD pipeline that glues everything together. The pipeline looks as follows:
 
-`(Source) -> (Build) -> (TerraformPlan -> TerraformApply)`
+`(Source) -> (Build) -> (TerraformPlan -> Manual Approval -> TerraformApply)`
 
-## Requisites
+## Prerequisites
 
-An AWS User privileged to perform the deployment of the resources via Terraform.
+An AWS User privileged to perform the deployment of this repo's resources via (a local-running) Terraform.
 
 ## Usage
 

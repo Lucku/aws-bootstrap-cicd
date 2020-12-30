@@ -1,6 +1,7 @@
+# File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.toptal.com/developers/gitignore/api/terraform,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=terraform,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,terraform
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,terraform
 
 ### Terraform ###
 # Local .terraform directories
@@ -34,14 +35,16 @@ override.tf.json
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
 *.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+.ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/terraform,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,terraform
+
+# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+.terraform.lock.hcl
