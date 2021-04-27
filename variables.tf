@@ -13,3 +13,8 @@ variable "branch_name" {
 variable "environment" {
   description = "Application environment (dev/prod)"
 }
+
+variable "terraform_version" {
+  description = "Version of Terraform to be used to set up infrastructure in CI/CD"
+  default     = "0.15.1"
+}

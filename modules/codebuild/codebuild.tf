@@ -15,13 +15,13 @@ resource "aws_codebuild_project" "codebuild_project_build" {
 
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
-    image                       = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
+    image                       = "aws/codebuild/standard:5.0"
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.14.3"
+      value = var.terraform_version
     }
   }
 
@@ -78,7 +78,7 @@ resource "aws_codebuild_project" "codebuild_project_terraform_plan" {
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.14.3"
+      value = var.terraform_version
     }
 
     environment_variable {
@@ -150,7 +150,7 @@ resource "aws_codebuild_project" "codebuild_project_terraform_apply" {
 
     environment_variable {
       name  = "TERRAFORM_VERSION"
-      value = "0.14.3"
+      value = var.terraform_version
     }
 
     environment_variable {
@@ -174,6 +174,7 @@ resource "aws_codebuild_project" "codebuild_project_terraform_apply" {
     s3_logs {
       status = "DISABLED"
       #location = "${var.s3_logging_bucket_id}/${var.codebuild_project_terraform_apply_name}/build_log"
+      # ^ enable if S3 logs are desired
     }
 
   }

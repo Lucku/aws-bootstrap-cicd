@@ -41,3 +41,7 @@ variable "s3_logging_bucket_name" {
 variable "codebuild_iam_role_arn" {
   description = "ARN of the CodeBuild IAM role"
 }
+
+variable "terraform_version" {
+  description = "Version of Terraform to be used to set up infrastructure in CI/CD"
+}

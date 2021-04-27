@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.22.0"
+      version = "3.37.0"
     }
   }
 }
@@ -42,10 +42,11 @@ module "codecommit" {
 
 ## Build CodeBuild projects for Build, Terraform Plan and Terraform Apply
 module "codebuild" {
-  source         = "./modules/codebuild"
-  project_name   = var.project_name
-  application_id = var.application_id
-  environment    = var.environment
+  source            = "./modules/codebuild"
+  project_name      = var.project_name
+  application_id    = var.application_id
+  environment       = var.environment
+  terraform_version = var.terraform_version
 
   codebuild_project_build_name           = "${var.application_id}-build-${var.environment}"
   codebuild_project_terraform_plan_name  = "${var.application_id}-terraform-plan-${var.environment}"

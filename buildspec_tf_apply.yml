@@ -15,8 +15,9 @@ phases:
     commands:
       - terraform --version
       - |
-        terraform init -input=false -backend-config="bucket=$STATE_BUCKET_NAME" \
+        terraform -chdir=infrastructure init -input=false \
+        -backend-config="bucket=$STATE_BUCKET_NAME" \
         -backend-config="key=$APPLICATION_ID/terraform.tfstate" \
         -backend-config="region=eu-central-1" \
-        -backend-config="dynamodb_table=$STATE_LOCKING_TABLE_NAME" infrastructure/
-      - terraform apply -auto-approve -input=false tfplan.out
+        -backend-config="dynamodb_table=$STATE_LOCKING_TABLE_NAME"
+      - terraform -chdir=infrastructure apply -auto-approve -input=false tfplan.out

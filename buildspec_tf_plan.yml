@@ -15,15 +15,15 @@ phases:
     commands:
       - terraform --version
       - |
-        terraform init -input=false -backend-config="bucket=$STATE_BUCKET_NAME" \
+        terraform -chdir=infrastructure init -input=false \
+        -backend-config="bucket=$STATE_BUCKET_NAME" \
         -backend-config="key=$APPLICATION_ID/terraform.tfstate" \
         -backend-config="region=eu-central-1" \
-        -backend-config="dynamodb_table=$STATE_LOCKING_TABLE_NAME" infrastructure/
-      - terraform validate infrastructure/
-      - terraform plan -lock=false -input=false -out=tfplan.out infrastructure/
+        -backend-config="dynamodb_table=$STATE_LOCKING_TABLE_NAME"
+      - terraform -chdir=infrastructure validate
+      - terraform -chdir=infrastructure plan -lock=false -input=false -out=tfplan.out
 
 artifacts:
   files:
     - bin/**/*
     - infrastructure/**/*
-    - tfplan.out
